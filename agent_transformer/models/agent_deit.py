@@ -222,8 +222,8 @@ class AgentAttention(nn.Module):
             mask: (0/-inf) mask with shape of (num_windows, Wh*Ww, Wh*Ww) or None
         """
         b, n, c = x.shape
-        h = int(n ** 0.5)
-        w = int(n ** 0.5)
+        h = int(（n - 1) ** 0.5)
+        w = int(（n - 1) ** 0.5)
         num_heads = self.num_heads
         head_dim = c // num_heads
         qkv = self.qkv(x).reshape(b, n, 3, c).permute(2, 0, 1, 3)
